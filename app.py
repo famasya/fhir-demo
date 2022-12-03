@@ -15,10 +15,6 @@ client_sync = SyncFHIRClient(
     'Bearer <TOKEN>'
 )
 
-# Utility function for pretty-print
-def pprint(body):
-    print(jsondump.dumps(body, sort_keys=True, indent=2))
-
 # Always run in sync
 @app.get('/patient/<patient_id>')
 def get_patient(patient_id):
