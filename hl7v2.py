@@ -1,4 +1,5 @@
 import hl7
+from rich import print
 
 message = '\r'.join([
     'MSH|^~\&|MegaReg|XYZHospC|SuperOE|XYZImgCtr|20060529090131-0500||ADT^A01^ADT_A01|01052901|P|2.5',
@@ -16,4 +17,4 @@ message = '\r'.join([
 
 message = hl7.parse(message)
 
-print(message.segments())
+print(message.segments('OBX'))

@@ -7,4 +7,5 @@ It is recommended to use python environment i.e. [pipenv](https://pipenv.pypa.io
 ```
 pip install -r requirements.txt
 python fhir.py
+python app.py
 ```
