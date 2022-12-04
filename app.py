@@ -8,6 +8,8 @@ import json as jsondump
 from fhirpy import SyncFHIRClient
 from fhirpy.base.exceptions import ResourceNotFound
 
+from resources_type import PatientResource
+
 app = Sanic(__name__)
 fhir_base_url = 'https://server.fire.ly/'
 client_sync = SyncFHIRClient(
@@ -16,10 +18,11 @@ client_sync = SyncFHIRClient(
 )
 
 # Always run in sync
-@app.get('/patient/<patient_id>')
-def get_patient(patient_id):
+@app.get('/patient/<get_patient_id>')
+def get_patient(request, get_patient_id):
     try:
-        patient = client_sync.reference('Patient', patient_id).to_resource()
+        # Implement implicit interface for patient var
+        patient: PatientResource = client_sync.reference('Patient', get_patient_id).to_resource().serialize()
         return json(patient)
     except ResourceNotFound:
         return json({
